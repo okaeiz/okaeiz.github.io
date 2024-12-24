@@ -79,8 +79,19 @@
         <!-- Load vr.js after jQuery -->
         <script type="text/javascript" src="vr2data/vr.js"></script>
 
-        <!-- Initialize VR mode -->
+        <!-- Define isVRModeRequested function -->
         <script type="text/javascript">
+            function isVRModeRequested() {
+                var querystr = window.location.search.substring(1);
+                var params = querystr.split('&');
+                for (var i = 0; i < params.length; i++) {
+                    if (params[i].toLowerCase() === "vr") {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
             jQuery(document).ready(function() {
                 if (isVRModeRequested()) {
                     accessWebVr();
